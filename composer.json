@@ -1,0 +1,19 @@
+{
+    "name": "itinance/tinygeo",
+    "authors": [
+        {
+            "name": "hagen huebel",
+            "email": "hhuebel@itinance.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"tinygeo\\": "src/"}
+    },
+    "require": {
+        "php": ">=5.4.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*",
+        "phpunit/dbunit": "1.3.*"
+    }
+}
