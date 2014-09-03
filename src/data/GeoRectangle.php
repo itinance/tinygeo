@@ -3,7 +3,7 @@
 /*
  * This file is part of the tinygeo package.
  *
- * (C) ITinance GmbH <http://https://github.com/itinance/>
+ * (C) ITinance GmbH <https://github.com/itinance/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
