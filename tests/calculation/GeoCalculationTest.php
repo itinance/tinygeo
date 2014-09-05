@@ -83,5 +83,14 @@ class GeoCalculationTests extends PHPUnit_Framework_TestCase
         $this->assertEquals( GeoDegree::decimalsFromDegreesMinutesAndSeconds(11, 32, 23), $destination->lng, '', 0.001 );
     }
 
+    public function testBoundingBox() {
+        $center = new GeoPoint(48.135993, 11.539721);
+
+        $box = GeoCalculation::getBoundingBox($center, 0.7); // 700m
+        $this->assertEquals( new GeoPoint( 48.1404443, 11.54637187 ),  $box->getNorthEast(), '', 0.001 );
+        $this->assertEquals( new GeoPoint( 48.1404443, 11.53307013 ),  $box->getNorthWest(), '', 0.001 );
+        $this->assertEquals( new GeoPoint( 48.13154, 11.53307013 ),  $box->getSouthWest(), '', 0.001 );
+        $this->assertEquals( new GeoPoint( 48.13154, 11.54637187 ),  $box->getSouthEast(), '', 0.001 );
+    }
 
 }
