@@ -91,9 +91,12 @@ class GeoDegree
         return $d->toDecimals();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return sprintf("%d° %d' %0.g''", $this->degrees, $this->minutes, $this->seconds);
+        return sprintf("%d°%02d'%0.4g''", $this->degrees, $this->minutes, $this->seconds);
     }
 
 } 

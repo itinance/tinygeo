@@ -14,12 +14,12 @@ class GeoDegreeTests extends PHPUnit_Framework_TestCase {
 
     public function testDegreeToString() {
         $d = new GeoDegree(16, 30, 1.234);
-        $this->assertEquals("16° 30' 1.234''", (string) $d);
+        $this->assertEquals("16°30'1.234''", (string) $d);
     }
 
     public function testDegreesFromDecimal() {
         $d = GeoDegree::degreeFromDecimals(16.324525);
-        $this->assertEquals((string)$d, "16° 19' 28.29''");
+        $this->assertEquals((string)$d, "16°19'28.29''");
 
     }
 
@@ -39,10 +39,11 @@ class GeoDegreeTests extends PHPUnit_Framework_TestCase {
     }
 
     public function testDegreesFromString() {
-        $d = GeoDegree::fromString("48° 08' 10''");
+        $d = GeoDegree::fromString("48°08'10''");
         $this->assertEquals( 48, $d->degrees );
         $this->assertEquals( 8, $d->minutes );
         $this->assertEquals( 10, $d->seconds);
     }
+
 
 }

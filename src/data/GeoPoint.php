@@ -25,11 +25,25 @@ class GeoPoint
     public $lng;
 
     /**
-     * @param float $lat
-     * @param float $lng
+     * Initialize latitude and longitude with decimal values or as degree-minute-second-representing string
+     * @param float|string $lat
+     * @param float|string $lng
      */
     public function __construct($lat, $lng)
     {
+
+        if(is_string($lat) && is_string($lng)) {
+            $degLat = GeoDegree::fromString($lat);
+            if($degLat) {
+                $degLng = GeoDegree::fromString($lng);
+                if($degLng) {
+                    $this->lat = $degLat->toDecimals();
+                    $this->lng = $degLng->toDecimals();
+                    return;
+                }
+            }
+        }
+
         $this->lat = (float)$lat;
         $this->lng = (float)$lng;
     }
@@ -53,6 +67,16 @@ class GeoPoint
         $fmt = sprintf('%%0.%u%s', $precision, $fmtChar);
 
         return sprintf("$fmt,$fmt", $this->lat, $this->lng);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStringAsDegreeMinuteSecond() {
+        $degLat = GeoDegree::degreeFromDecimals($this->lat);
+        $defLng = GeoDegree::degreeFromDecimals($this->lng);
+
+        return sprintf("%s,%s", $degLat, $defLng);
     }
 
     /**

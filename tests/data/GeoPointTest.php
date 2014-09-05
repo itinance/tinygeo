@@ -31,4 +31,16 @@ class GeoPointTests extends PHPUnit_Framework_TestCase
         $this->assertFalse($p2->isEqualTo($p1));
     }
 
+    public function testInitFromDegreeRepresentingString() {
+        $p1 = new GeoPoint("48°07'31.5''", "011°32'23''");
+
+        $this->assertEquals(48.125417, $p1->lat, '', 0.000001);
+        $this->assertEquals(11.539722, $p1->lng, '', 0.000001);
+    }
+
+    public function testGetDegreeRepresentingString() {
+        $p1 = new GeoPoint(48.125417, 11.539722);
+        $this->assertEquals("48°07'31.5'',11°32'23''", $p1->getStringAsDegreeMinuteSecond());
+    }
+
 }
