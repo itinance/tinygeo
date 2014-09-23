@@ -84,4 +84,32 @@ class GeoCalculationTests extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testSpecialCaseTicket0001() {
+        $p = new GeoPoint(48.0644576, 11.3480854);
+        $destination = GeoCalculation::getDestinationWithDistanceAndBearing($p, 1.0, 45);
+
+        $this->assertEquals(48.07081656, $destination->lat, '', 0.0001);
+        $this->assertEquals(11.35757382, $destination->lng, '', 0.0001);
+    }
+
+    public function testSpecialCaseTicket0001WithBoundingBox() {
+        $p = new GeoPoint(48.0644576, 11.3480854);
+
+        $rect = GeoCalculation::getBoundingBox($p, 1.0);
+
+
+        $this->assertEquals(48.07081656, $rect->getNorthEast()->lat, '', 0.0001);
+        $this->assertEquals(11.35757382, $rect->getNorthEast()->lng, '', 0.0001);
+
+        $this->assertEquals(48.07081656, $rect->getNorthWest()->lat, '', 0.0001);
+        $this->assertEquals(11.33859698, $rect->getNorthWest()->lng, '', 0.0001);
+
+        $this->assertEquals(48.05809785, $rect->getSouthWest()->lat, '', 0.0001);
+        $this->assertEquals(11.33859932, $rect->getSouthWest()->lng, '', 0.0001);
+
+        $this->assertEquals(48.05809785, $rect->getSouthEast()->lat, '', 0.0001);
+        $this->assertEquals(11.35757148, $rect->getSouthEast()->lng, '', 0.0001);
+
+    }
+
 }
