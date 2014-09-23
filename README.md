@@ -3,6 +3,20 @@ tinygeo
 
 Provides classes for geographic calculations and related data structures.
 
+Installation using composer:
+
+```
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:itinance/tinygeo.git"
+        }
+    ],
+    "require": {
+        "itinance/tinygeo": "dev-master"
+    },
+```
+
 Usage examples:
 
 ```
